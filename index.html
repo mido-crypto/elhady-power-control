@@ -1,0 +1,579 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0e2c58">
+  <meta name="description" content="Elhady Power Control — نظام إدارة الطلبات والإيصالات">
+  <title>Elhady Power Control | إدارة الطلبات</title>
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="apple-touch-icon" href="icon-192.png">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <!-- مكتبة الأيقونات -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <symbol id="i-home" viewBox="0 0 24 24">
+        <path d="M3 11l9-8 9 8" />
+        <path d="M5 10v10h5v-6h4v6h5V10" />
+      </symbol>
+      <symbol id="i-orders" viewBox="0 0 24 24">
+        <rect x="5" y="4" width="14" height="17" rx="2" />
+        <path d="M9 4h6v3H9z" />
+        <path d="M9 12h6M9 16h4" />
+      </symbol>
+      <symbol id="i-plus" viewBox="0 0 24 24">
+        <path d="M12 5v14M5 12h14" />
+      </symbol>
+      <symbol id="i-users" viewBox="0 0 24 24">
+        <circle cx="9" cy="8" r="3.5" />
+        <path d="M2.5 20c0-3.6 2.9-6 6.5-6s6.5 2.4 6.5 6" />
+        <circle cx="17.5" cy="9" r="2.5" />
+        <path d="M17 14.2c2.6.3 4.5 2.2 4.5 5.3" />
+      </symbol>
+      <symbol id="i-chart" viewBox="0 0 24 24">
+        <path d="M4 20V10M10 20V4M16 20v-8M22 20H2" />
+      </symbol>
+      <symbol id="i-settings" viewBox="0 0 24 24">
+        <path d="M4 6h9M17 6h3M4 12h3M11 12h9M4 18h11M19 18h1" />
+        <circle cx="15" cy="6" r="2" />
+        <circle cx="9" cy="12" r="2" />
+        <circle cx="17" cy="18" r="2" />
+      </symbol>
+      <symbol id="i-check" viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="9" />
+        <path d="M8 12.5l3 3 5-6" />
+      </symbol>
+      <symbol id="i-clock" viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="9" />
+        <path d="M12 7v5l3 2" />
+      </symbol>
+      <symbol id="i-wallet" viewBox="0 0 24 24">
+        <path d="M3 7a2 2 0 0 1 2-2h13v4" />
+        <path d="M3 7v11a2 2 0 0 0 2 2h15V9H5a2 2 0 0 1-2-2z" />
+        <circle cx="16.5" cy="14.5" r="1" />
+      </symbol>
+      <symbol id="i-alert" viewBox="0 0 24 24">
+        <path d="M12 3l10 18H2L12 3z" />
+        <path d="M12 10v5M12 18v.01" />
+      </symbol>
+      <symbol id="i-print" viewBox="0 0 24 24">
+        <path d="M7 9V3h10v6" />
+        <rect x="3" y="9" width="18" height="9" rx="2" />
+        <path d="M7 14h10v7H7z" />
+      </symbol>
+      <symbol id="i-trash" viewBox="0 0 24 24">
+        <path d="M4 7h16M10 11v6M14 11v6M6 7l1 13h10l1-13M9 7V4h6v3" />
+      </symbol>
+      <symbol id="i-edit" viewBox="0 0 24 24">
+        <path d="M4 20h4L19 9l-4-4L4 16v4z" />
+        <path d="M13.5 6.5l4 4" />
+      </symbol>
+      <symbol id="i-download" viewBox="0 0 24 24">
+        <path d="M12 4v11M7 11l5 5 5-5M4 20h16" />
+      </symbol>
+      <symbol id="i-upload" viewBox="0 0 24 24">
+        <path d="M12 16V5M7 9l5-5 5 5M4 20h16" />
+      </symbol>
+      <symbol id="i-chat" viewBox="0 0 24 24">
+        <path d="M4 5h16v11H9l-5 4V5z" />
+      </symbol>
+      <symbol id="i-x" viewBox="0 0 24 24">
+        <path d="M6 6l12 12M18 6L6 18" />
+      </symbol>
+      <symbol id="i-menu" viewBox="0 0 24 24">
+        <path d="M4 6h16M4 12h16M4 18h16" />
+      </symbol>
+      <symbol id="i-undo" viewBox="0 0 24 24">
+        <path d="M9 7L4 12l5 5" />
+        <path d="M4 12h10a6 6 0 0 1 0 12h-2" transform="translate(0 -4)" />
+      </symbol>
+      <symbol id="i-cal" viewBox="0 0 24 24">
+        <rect x="3" y="5" width="18" height="16" rx="2" />
+        <path d="M3 10h18M8 3v4M16 3v4" />
+      </symbol>
+      <symbol id="i-shield" viewBox="0 0 24 24">
+        <path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6l8-3z" />
+        <path d="M9 12l2 2 4-4" />
+      </symbol>
+    </defs>
+  </svg>
+
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar" aria-label="القائمة الرئيسية">
+      <div class="brand">
+        <img src="logo.png" alt="Elhady Power Control" class="brand-logo">
+        <small id="brandName">نظام الطلبات والإيصالات</small>
+      </div>
+      <nav class="nav">
+        <button class="nav-link active" data-page="dashboard"><svg class="ic">
+            <use href="#i-home" />
+          </svg> الرئيسية</button>
+        <button class="nav-link" data-page="orders"><svg class="ic">
+            <use href="#i-orders" />
+          </svg> الطلبات</button>
+        <button class="nav-link" data-page="new-order"><svg class="ic">
+            <use href="#i-plus" />
+          </svg> طلب جديد</button>
+        <button class="nav-link" data-page="customers"><svg class="ic">
+            <use href="#i-users" />
+          </svg> العملاء</button>
+        <button class="nav-link" data-page="reports"><svg class="ic">
+            <use href="#i-chart" />
+          </svg> التقارير</button>
+        <button class="nav-link" data-page="settings"><svg class="ic">
+            <use href="#i-settings" />
+          </svg> الإعدادات</button>
+      </nav>
+      <div class="day-panel">
+        <div class="day-panel-head"><strong>أيام الشغل</strong><button type="button" id="addDayBtn"
+            title="بدء يوم جديد"><svg class="ic sm">
+              <use href="#i-plus" />
+            </svg> يوم جديد</button></div>
+        <div id="daysList" class="days-list"></div>
+        <div class="day-actions">
+          <button class="danger-btn" id="deleteDayOrders">حذف طلبات اليوم</button>
+          <button class="danger-btn solid" id="deleteEveryOrder">حذف كل الطلبات</button>
+        </div>
+      </div>
+    </aside>
+    <div class="scrim" id="scrim"></div>
+
+    <main class="main">
+      <header class="topbar">
+        <button class="menu-btn" id="menuBtn" aria-label="فتح القائمة"><svg class="ic">
+            <use href="#i-menu" />
+          </svg></button>
+        <div>
+          <div class="eyebrow">Elhady Power Control</div>
+          <h1 id="pageTitle">الرئيسية</h1>
+        </div>
+        <button class="primary-btn" id="topNewOrder"><svg class="ic sm">
+            <use href="#i-plus" />
+          </svg> طلب جديد</button>
+      </header>
+
+      <div id="storageWarn" class="banner danger" hidden></div>
+
+      <!-- الرئيسية -->
+      <section class="page active" id="page-dashboard">
+        <div class="welcome-row">
+          <div>
+            <h2>أهلاً بيك 👋</h2>
+            <p>تابع شغل المصنع والطلبات من مكان واحد.</p>
+          </div>
+          <div class="today-chip" id="todayLabel"></div>
+        </div>
+        <div id="backupBanner" class="banner warn" hidden></div>
+        <div id="overdueBanner" class="banner danger" hidden></div>
+        <div class="stats-grid">
+          <article class="stat-card">
+            <div class="stat-icon blue"><svg class="ic">
+                <use href="#i-orders" />
+              </svg></div>
+            <div><span>إجمالي الطلبات</span><strong id="statOrders">0</strong></div>
+          </article>
+          <article class="stat-card">
+            <div class="stat-icon orange"><svg class="ic">
+                <use href="#i-clock" />
+              </svg></div>
+            <div><span>قيد التنفيذ</span><strong id="statPending">0</strong></div>
+          </article>
+          <article class="stat-card">
+            <div class="stat-icon green"><svg class="ic">
+                <use href="#i-check" />
+              </svg></div>
+            <div><span>تم تسليمها</span><strong id="statDelivered">0</strong></div>
+          </article>
+          <article class="stat-card">
+            <div class="stat-icon navy"><svg class="ic">
+                <use href="#i-chart" />
+              </svg></div>
+            <div><span>إجمالي المبالغ</span><strong id="statSales">0 ج.م</strong></div>
+          </article>
+          <article class="stat-card">
+            <div class="stat-icon green"><svg class="ic">
+                <use href="#i-wallet" />
+              </svg></div>
+            <div><span>المحصَّل</span><strong id="statPaid">0 ج.م</strong></div>
+          </article>
+          <article class="stat-card">
+            <div class="stat-icon red"><svg class="ic">
+                <use href="#i-alert" />
+              </svg></div>
+            <div><span>المتبقي عند العملاء</span><strong id="statRemaining">0 ج.م</strong></div>
+          </article>
+        </div>
+        <div class="section-heading">
+          <div>
+            <h2>أحدث الطلبات</h2>
+            <p>آخر الطلبات في اليوم المحدد</p>
+          </div><button class="text-btn" data-go="orders">عرض كل الطلبات ←</button>
+        </div>
+        <div class="table-card">
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>رقم الطلب</th>
+                  <th>العميل</th>
+                  <th>التفاصيل</th>
+                  <th>المتبقي</th>
+                  <th>الحالة</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody id="recentOrders"></tbody>
+            </table>
+          </div>
+          <div class="empty-state" id="recentEmpty">
+            <div class="empty-icon"><svg class="ic xl">
+                <use href="#i-orders" />
+              </svg></div><strong>لسه مفيش طلبات</strong>
+            <p>ابدأ بتسجيل أول طلب للمصنع.</p><button class="primary-btn" data-go="new-order">تسجيل طلب</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- طلب جديد / تعديل -->
+      <section class="page" id="page-new-order">
+        <div class="section-heading">
+          <div>
+            <h2 id="formHeading">تسجيل طلب جديد</h2>
+            <p id="formSub">املأ البيانات المتاحة فقط — كل الخانات اختيارية.</p>
+          </div><span class="optional-badge">كل البيانات اختيارية</span>
+        </div>
+        <form id="orderForm" novalidate>
+          <input type="hidden" id="editOrderId">
+          <div class="form-card">
+            <h3><span class="heading-icon"><svg class="ic sm">
+                  <use href="#i-users" />
+                </svg></span> بيانات العميل</h3>
+            <div class="form-grid">
+              <label>اسم العميل <input id="customerName" list="customersSuggestions" autocomplete="off"
+                  placeholder="مثلاً: أحمد محمد"><datalist id="customersSuggestions"></datalist></label>
+              <label>رقم التليفون <input id="customerPhone" type="tel" inputmode="tel"
+                  placeholder="01xxxxxxxxx"></label>
+            </div>
+          </div>
+          <div class="form-card">
+            <div class="card-title-row">
+              <h3><span class="heading-icon"><svg class="ic sm">
+                    <use href="#i-orders" />
+                  </svg></span> تفاصيل الطلب</h3><button type="button" class="outline-btn" id="addItemBtn"><svg
+                  class="ic sm">
+                  <use href="#i-plus" />
+                </svg> إضافة منتج</button>
+            </div>
+            <div id="itemsContainer"></div>
+            <datalist id="heaterTypesList"></datalist>
+          </div>
+          <div class="form-card">
+            <h3><span class="heading-icon"><svg class="ic sm">
+                  <use href="#i-wallet" />
+                </svg></span> الحسابات والحالة</h3>
+            <div class="form-grid three">
+              <label>إجمالي المنتجات (تلقائي) <input id="subtotalView" readonly
+                  placeholder="يظهر لما تكتب الأسعار"></label>
+              <label>الخصم (ج.م) <input id="discount" type="number" min="0" step="0.01" inputmode="decimal"
+                  placeholder="اختياري"></label>
+              <label>الإجمالي النهائي (ج.م) <input id="totalPrice" type="number" min="0" step="0.01" inputmode="decimal"
+                  placeholder="اختياري"><button type="button" class="text-btn small" id="autoCalcBtn" hidden>↻ احسب
+                  تلقائياً من المنتجات</button></label>
+              <label>المبلغ المدفوع (ج.م) <input id="paidAmount" type="number" min="0" step="0.01" inputmode="decimal"
+                  placeholder="اختياري"></label>
+              <label>المتبقي <input id="remainingView" readonly placeholder="—"></label>
+              <label>حالة الطلب <select id="orderStatus"></select></label>
+              <label>موعد التسليم المتوقع <input id="dueDate" type="date"></label>
+            </div>
+            <label class="full-label">ملاحظات إضافية <textarea id="orderNotes" rows="3"
+                placeholder="أي تفاصيل أو ملاحظات تحب تسجلها..."></textarea></label>
+            <div class="form-error" id="formError" role="alert" hidden></div>
+          </div>
+          <div class="form-actions"><button type="button" class="secondary-btn" id="cancelForm">إلغاء</button><button
+              type="submit" class="primary-btn">حفظ الطلب</button><button type="button" class="print-btn"
+              id="savePrintBtn"><svg class="ic sm">
+                <use href="#i-print" />
+              </svg> حفظ وعرض الإيصال</button></div>
+        </form>
+      </section>
+
+      <!-- الطلبات -->
+      <section class="page" id="page-orders">
+        <div class="section-heading">
+          <div>
+            <h2>كل الطلبات</h2>
+            <p>ابحث عن طلب أو افتحه للتعديل والطباعة.</p>
+          </div>
+          <div class="heading-actions"><button class="outline-btn" id="exportCsv"><svg class="ic sm">
+                <use href="#i-download" />
+              </svg> تصدير Excel</button><button class="primary-btn" data-go="new-order"><svg class="ic sm">
+                <use href="#i-plus" />
+              </svg> طلب جديد</button></div>
+        </div>
+        <div class="filter-bar">
+          <input id="orderSearch" type="search" placeholder="ابحث برقم الطلب أو اسم العميل أو التليفون أو المنتج...">
+          <select id="orderScope" aria-label="النطاق">
+            <option value="day">اليوم المحدد</option>
+            <option value="all">كل الأيام</option>
+          </select>
+          <select id="statusFilter" aria-label="الحالة"></select>
+          <select id="payFilter" aria-label="الدفع">
+            <option value="">كل حالات الدفع</option>
+            <option value="unpaid">غير مدفوع</option>
+            <option value="partial">مدفوع جزئياً</option>
+            <option value="paid">مدفوع</option>
+            <option value="due">عليه متبقي</option>
+          </select>
+          <select id="dueFilter" aria-label="التسليم">
+            <option value="">كل المواعيد</option>
+            <option value="overdue">متأخرة عن موعد التسليم</option>
+          </select>
+          <label class="date-filter">من <input id="fromDate" type="date"></label>
+          <label class="date-filter">إلى <input id="toDate" type="date"></label>
+          <button class="text-btn" id="clearFilters" type="button">مسح الفلاتر</button>
+        </div>
+        <div class="table-card">
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>رقم الطلب</th>
+                  <th>العميل</th>
+                  <th>التاريخ</th>
+                  <th>المنتجات</th>
+                  <th>الإجمالي</th>
+                  <th>المتبقي</th>
+                  <th>الدفع</th>
+                  <th>الحالة</th>
+                  <th>الإجراءات</th>
+                </tr>
+              </thead>
+              <tbody id="allOrders"></tbody>
+            </table>
+          </div>
+          <div class="empty-state" id="ordersEmpty">
+            <div class="empty-icon"><svg class="ic xl">
+                <use href="#i-orders" />
+              </svg></div><strong>لا توجد طلبات مطابقة</strong>
+            <p>سجل طلباً جديداً أو غيّر كلمات البحث والفلاتر.</p>
+          </div>
+          <div class="table-foot" id="ordersFoot"></div>
+        </div>
+      </section>
+
+      <!-- العملاء -->
+      <section class="page" id="page-customers">
+        <div class="section-heading">
+          <div>
+            <h2>العملاء</h2>
+            <p>قائمة تلقائية بالعملاء من كل الأيام، مرتّبة بالأكثر مديونية.</p>
+          </div>
+        </div>
+        <div class="table-card">
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>اسم العميل</th>
+                  <th>رقم التليفون</th>
+                  <th>عدد الطلبات</th>
+                  <th>إجمالي الطلبات</th>
+                  <th>المدفوع</th>
+                  <th>المتبقي</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody id="customersTable"></tbody>
+            </table>
+          </div>
+          <div class="empty-state" id="customersEmpty">
+            <div class="empty-icon"><svg class="ic xl">
+                <use href="#i-users" />
+              </svg></div><strong>لا يوجد عملاء مسجلون</strong>
+            <p>أسماء العملاء ستظهر هنا بعد تسجيل الطلبات.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- التقارير -->
+      <section class="page" id="page-reports">
+        <div class="section-heading">
+          <div>
+            <h2>التقارير الشهرية</h2>
+            <p>ملخص كل الطلبات المسجلة في الشهر المختار (من كل الأيام).</p>
+          </div><label class="inline-label">الشهر <input id="reportMonth" type="month"></label>
+        </div>
+        <div class="stats-grid" id="reportStats"></div>
+        <div class="two-col">
+          <div class="table-card">
+            <div class="card-pad">
+              <h3>حسب نوع المنتج</h3>
+            </div>
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>القسم</th>
+                    <th>عدد البنود</th>
+                    <th>الكمية</th>
+                    <th>القيمة</th>
+                  </tr>
+                </thead>
+                <tbody id="reportCats"></tbody>
+              </table>
+            </div>
+          </div>
+          <div class="table-card">
+            <div class="card-pad">
+              <h3>حسب حالة الطلب</h3>
+            </div>
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>الحالة</th>
+                    <th>عدد الطلبات</th>
+                  </tr>
+                </thead>
+                <tbody id="reportStatus"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- الإعدادات -->
+      <section class="page" id="page-settings">
+        <div class="section-heading">
+          <div>
+            <h2>الإعدادات</h2>
+            <p>بيانات الإيصال والنسخ الاحتياطي وسلة المحذوفات.</p>
+          </div>
+        </div>
+
+        <div class="form-card settings-card">
+          <h3>إعدادات الإيصال</h3>
+          <label>اسم المصنع (يظهر تحت اللوجو لو غيّرته) <input id="settingFactory" placeholder="اسم المصنع"></label>
+          <label>رقم التليفون <input id="settingPhone" placeholder="رقم المصنع (اختياري)"></label>
+          <label>العنوان <input id="settingAddress" placeholder="عنوان المصنع (اختياري)"></label>
+          <label>مقاس الطباعة <select id="settingSize">
+              <option value="a4">A4 — طابعة عادية</option>
+              <option value="80mm">إيصال حراري 80mm</option>
+            </select></label>
+          <label>الضمان والشروط (اختياري) <textarea id="settingTerms" rows="3"
+              placeholder="مثلاً: الضمان 6 شهور ضد عيوب التصنيع ولا يشمل سوء الاستخدام."></textarea></label>
+          <label>عبارة أسفل الإيصال <input id="settingFooter" placeholder="شكراً لثقتكم بنا"></label>
+          <button class="primary-btn" id="saveSettings">حفظ الإعدادات</button>
+        </div>
+
+        <div class="form-card settings-card wide">
+          <h3><svg class="ic sm">
+              <use href="#i-shield" />
+            </svg> النسخ الاحتياطي</h3>
+          <p class="hint">البيانات محفوظة على هذا الجهاز وهذا المتصفح فقط. نزّل نسخة احتياطية بشكل منتظم (يومياً أو
+            أسبوعياً) واحتفظ بها في مكان آخر مثل Google Drive أو واتساب لنفسك.</p>
+          <div class="backup-status" id="backupStatus"></div>
+          <div class="btn-row">
+            <button class="primary-btn" id="backupBtn"><svg class="ic sm">
+                <use href="#i-download" />
+              </svg> تنزيل نسخة احتياطية</button>
+            <button class="outline-btn" id="restoreBtn"><svg class="ic sm">
+                <use href="#i-upload" />
+              </svg> استرجاع من ملف</button>
+            <input type="file" id="restoreFile" accept=".json,application/json" hidden>
+          </div>
+          <div id="undoRestoreRow" class="hint" hidden>آخر استرجاع غيّر بياناتك. <button type="button" class="text-btn"
+              id="undoRestoreBtn">↶ التراجع عن آخر استرجاع</button></div>
+          <h4>لقطات تلقائية على هذا الجهاز</h4>
+          <p class="hint">بيتحفظ تلقائياً آخر 3 أيام شغل. دي لحماية بسيطة من الأخطاء، ومش بديل عن النسخة الاحتياطية
+            الخارجية.</p>
+          <div id="snapshotsList" class="plain-list"></div>
+        </div>
+
+        <div class="form-card settings-card wide">
+          <h3><svg class="ic sm">
+              <use href="#i-trash" />
+            </svg> سلة المحذوفات</h3>
+          <p class="hint">أي طلب بتحذفه بيروح هنا أولاً (آخر 300 طلب) وتقدر ترجّعه.</p>
+          <div id="trashList" class="plain-list"></div>
+        </div>
+
+
+
+        <p class="about">Elhady Power Control — الإصدار <span id="appVersion"></span></p>
+      </section>
+
+      <footer class="footer">Elhady Power Control <span>•</span> Industrial Heating &amp; Electrical Solutions</footer>
+    </main>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"><span id="toastMsg"></span><button type="button"
+      id="toastAction" hidden></button></div>
+
+  <!-- نافذة الإيصال -->
+  <div class="modal-backdrop" id="receiptModal" role="dialog" aria-modal="true" aria-labelledby="receiptTitle">
+    <div class="modal">
+      <div class="modal-head">
+        <h3 id="receiptTitle">معاينة الإيصال</h3><button class="icon-btn" data-close aria-label="إغلاق"><svg class="ic">
+            <use href="#i-x" />
+          </svg></button>
+      </div>
+      <div id="receiptPreview"></div>
+      <div class="modal-actions"><button class="secondary-btn" data-close>إغلاق</button><button class="outline-btn"
+          id="waReceipt"><svg class="ic sm">
+            <use href="#i-chat" />
+          </svg> واتساب</button><button class="print-btn" id="printReceipt"><svg class="ic sm">
+            <use href="#i-print" />
+          </svg> طباعة</button></div>
+    </div>
+  </div>
+
+  <!-- نافذة تأكيد عامة -->
+  <div class="modal-backdrop" id="confirmModal" role="dialog" aria-modal="true" aria-labelledby="confirmTitle">
+    <div class="modal small">
+      <div class="modal-head">
+        <h3 id="confirmTitle">تأكيد</h3><button class="icon-btn" data-close aria-label="إغلاق"><svg class="ic">
+            <use href="#i-x" />
+          </svg></button>
+      </div>
+      <p id="confirmMsg" class="confirm-msg"></p>
+      <label id="confirmTypeRow" class="confirm-type" hidden><span id="confirmTypeHint"></span><input
+          id="confirmTypeInput" autocomplete="off"></label>
+      <div class="modal-actions"><button class="secondary-btn" id="confirmNo">إلغاء</button><button class="danger-btn"
+          id="confirmAlt" hidden>بديل</button><button class="primary-btn" id="confirmYes">تأكيد</button></div>
+    </div>
+  </div>
+
+  <!-- نافذة تسجيل دفعة -->
+  <div class="modal-backdrop" id="payModal" role="dialog" aria-modal="true" aria-labelledby="payTitle">
+    <div class="modal small">
+      <div class="modal-head">
+        <h3 id="payTitle">تسجيل دفعة</h3><button class="icon-btn" data-close aria-label="إغلاق"><svg class="ic">
+            <use href="#i-x" />
+          </svg></button>
+      </div>
+      <div id="paySummary" class="pay-summary"></div>
+      <div class="form-grid">
+        <label>المبلغ (ج.م) <input id="payAmount" type="number" min="0" step="0.01" inputmode="decimal"></label>
+        <label>ملاحظة (اختياري) <input id="payNote" placeholder="مثلاً: تحويل / كاش"></label>
+      </div>
+      <div class="form-error" id="payError" role="alert" hidden></div>
+      <div class="modal-actions"><button class="secondary-btn" data-close>إلغاء</button><button class="primary-btn"
+          id="paySave">حفظ الدفعة</button></div>
+    </div>
+  </div>
+
+  <script src="store.js"></script>
+  <script src="receipt.js"></script>
+  <script src="app.js"></script>
+</body>
+
+</html>
